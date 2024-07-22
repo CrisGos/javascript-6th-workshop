@@ -225,6 +225,42 @@ const deleteReservation = function(rooms, roomTypes) {
 }
 
 
+const editReservation = function (rooms, roomTypes) {
+  const idReservation = parseInt(prompt('Ingrese el ID de la reserva'))
+  const validation = reservations.find(reservation => reservation.uniqueNumber === idReservation)
+  if (validation) {
+    const roomInd = rooms.find(room => validation.roomNumber === room.number)
+    const typeRooms = roomTypes.find(roomType => roomInd.roomTypeId === roomType.id)
+    const confirmEdit = confirm(`
+      Deseas modificar la siguiente reserva?
+      fecha de inicio: ${validation.startsDate}
+      fecha final: ${validation.endsDate}
+      numero de habitacion: ${validation.roomNumber}
+      tipo de habitacion: ${typeRooms.name}
+      `);
+    
+    if (confirmEdit) {
+      const startsDate = prompt('Ingrese una nueva fecha de inicio de la reserva')
+      const endsDate = prompt('Ingrese una nueva fecha final de la reserva')
+      reservations[reservations.indexOf(validation)].startsDate = startsDate
+      reservations[reservations.indexOf(validation)].endsDate = endsDate
+      alert(`
+        Reserva realizada con exito, estos son los datos de la nueva reserva:
+        Deseas modificar la siguiente reserva?
+        fecha de inicio: ${ reservations[reservations.indexOf(validation)].startsDate}
+        fecha final: ${ reservations[reservations.indexOf(validation)].endsDate}
+        numero de habitacion: ${ reservations[reservations.indexOf(validation)].roomNumber}
+        tipo de habitacion: ${typeRooms.name}
+        `);
+    } else {
+      alert('Accion cancelada')
+    }
+  } else {
+    alert('Aun no tienes reservas');
+  }
+}
+
+
 // Llamar a la función para cargar y mostrar el contenido de data.json
 cargarYMostrarData()
   .then(({ rooms, roomTypes}) => {
@@ -233,7 +269,7 @@ cargarYMostrarData()
     // ... Continuar con la lógica de la app
     while (true) {
       const userInput = prompt(
-        "Ingresa la opcion que deseas 1. Reservar 2. Ver Reservas 3. Cancelar Reserva 4. Salir"
+        "Ingresa la opcion que deseas 1. Reservar 2. Ver Reservas 3. Cancelar Reserva 4. Editar Reserva 5. Salir"
       );
       switch (userInput) {
         case "1":
@@ -250,7 +286,12 @@ cargarYMostrarData()
           deleteReservation(rooms, roomTypes)
 
           break;
+
         case "4":
+          editReservation(rooms, roomTypes)
+
+          break;
+        case "5":
           // Salir del programa
           return;
         default:
