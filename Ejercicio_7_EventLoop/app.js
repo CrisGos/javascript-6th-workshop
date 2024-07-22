@@ -39,14 +39,13 @@ console.log("Fin del script");`);
           console.log(`Recuerda que "${texto[index]}" esta dentro de un cosole.log en la capa superior del codigo, no hace parte de una promise, setTimeout, etc. por lo tanto se convierte en una tarea principal, la cual se ejecuta inicialmente y en este caso se mostrará en la posicion ${index}`);
           alert(`Recuerda que "${texto[index]}" esta dentro de un cosole.log en la capa superior del codigo, no hace parte de una promise, setTimeout, etc. por lo tanto se convierte en una tarea principal, la cual se ejecuta inicialmente y en este caso se mostrará en la posicion ${index}`);
         } else if (index == 2 || index == 3) {
-          console.log(`Recuerda que "${texto[index]}" esta dentro de una Promise, por lo tanto se convierte en una microtarea, la cual se ejecuta despues de ejecutar las tareas principales y en este caso se mostrará en la posicion ${index}`);
-          alert(`Recuerda que "${texto[index]}" esta dentro de una Promise, por lo tanto se convierte en una microtarea, la cual se ejecuta despues de ejecutar las tareas principales y en este caso se mostrará en la posicion ${index}`);
-        } else {
           console.log(`Recuerda que "${texto[index]}" esta dentro de un setTimeout, por lo tanto se convierte en una macrotarea, la cual se ejecuta despues de ejecutar las tareas principales y las microtareas, en este caso se mostrará en la posicion ${index}`);
           alert(`Recuerda que "${texto[index]}" esta dentro de un setTimeout, por lo tanto se convierte en una macrotarea, la cual se ejecuta despues de ejecutar las tareas principales y las microtareas, en este caso se mostrará en la posicion ${index}`);
+        } else {
+          console.log(`Recuerda que "${texto[index]}" esta dentro de una Promise, por lo tanto se convierte en una microtarea, la cual se ejecuta despues de ejecutar las tareas principales y en este caso se mostrará en la posicion ${index}`);
+          alert(`Recuerda que "${texto[index]}" esta dentro de una Promise, por lo tanto se convierte en una microtarea, la cual se ejecuta despues de ejecutar las tareas principales y en este caso se mostrará en la posicion ${index}`);
         }
       }
-      
     }
   }
 }
